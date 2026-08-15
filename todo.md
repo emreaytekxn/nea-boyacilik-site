@@ -62,6 +62,6 @@ Hedef ifadeler: boya badana, ev boyama, tamirat, dekorasyon, alçı işleri, kı
 
 ## Vercel Canlı Yayın Düzeltmesi
 
-- [ ] Vercel production URL’sinde sunucu kaynak kodu yerine NEA Boyacılık landing page’inin açılmasını sağla.
-- [ ] Vercel build/output ayarlarını mevcut full-stack yapı ile uyumlu hale getir.
-- [ ] Güncel production URL’sini yeniden doğrula.
+- [x] Vercel production URL’sinde sunucu kaynak kodu yerine NEA Boyacılık landing page’inin açılmasını sağla.
+- [x] Vercel build/output ayarlarını mevcut full-stack yapı ile uyumlu hale getir.
+- [x] Güncel production URL’sini yeniden doğrula.
