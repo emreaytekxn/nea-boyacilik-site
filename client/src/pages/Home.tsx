@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, CalendarDays, Check, Hammer, Menu, Ruler, Sparkles, X } from "lucide-react";
 
-const heroVideo = "/manus-storage/nea-hero_4bf8639b.mp4";
-const heroImage = "/manus-storage/nea-green-painting_6b71b46c.png";
-const cleaningImage = "/manus-storage/nea-cleaning-detail_8cda05b4.png";
-const plasterImage = "/manus-storage/nea-plaster-repair_4fb683c9.png";
-const texture = "/manus-storage/nea-workshop-texture_02bf06b4.png";
-const detail = "/manus-storage/nea-detail_96fd03bb.png";
-const interiorImage = "/manus-storage/nea-interior-finish_0fb63481.png";
+const heroVideo = "/media/nea-hero.mp4";
+const heroImage = "/media/nea-green-painting.png";
+const cleaningImage = "/media/nea-cleaning-detail.png";
+const plasterImage = "/media/nea-plaster-repair.png";
+const texture = "/media/nea-workshop-texture.png";
+const detail = "/media/nea-detail.png";
+const interiorImage = "/media/nea-interior-finish.png";
 
 const services = [
   { number: "01", title: "Boya & Badana", text: "Duvar ve tavan yüzeylerini hazırlıyor, renk uygulamalarını dengeli ve temiz bir sonuç hedefiyle tamamlıyoruz.", image: interiorImage, icon: Sparkles, label: "RENK UYGULAMASI / TEMİZ SONUÇ" },
