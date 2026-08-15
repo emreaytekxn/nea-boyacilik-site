@@ -1,5 +1,15 @@
 # Adem Aytekin Web Sitesi Görevleri
 
+## Metin Revizyonu
+
+- [x] Tüm başlıkları ve açıklamaları profesyonel, kurumsal Türkçe ile yeniden yaz.
+- [x] “Babam” ve benzeri kişisel ifadeleri kaldır.
+- [x] 18 yıllık deneyim, titiz işçilik ve temiz teslim standardını marka diliyle anlat.
+- [x] Randevu formu ve iletişim metinlerini profesyonel hale getir.
+- [x] SEO title, description ve yapılandırılmış veri metinlerini revize et.
+
+
+
 ## Yeni Revizyon Gereksinimleri
 
 - [x] Ana renk sistemini babasının sevdiği yeşil tonlarına taşı; önceki kiremit temayı yeşil sistemle değiştir.
