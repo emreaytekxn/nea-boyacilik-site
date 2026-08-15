@@ -1,78 +1,43 @@
-/* Usta Atölyesi stili: sıcak kiremit vurgu, asimetrik editorial yerleşim, saha notu etiketleri ve doğrudan iletişim. */
 import { useState } from "react";
-import { ArrowUpRight, Check, ChevronDown, Hammer, Menu, Phone, Ruler, Sparkles, X } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Check, Hammer, Menu, Phone, Ruler, Sparkles, X } from "lucide-react";
 
 const portrait = "/manus-storage/adem-aytekin-portrait_56ce12dd.jpg";
+const mark = "/manus-storage/adem-aytekin-mark_b6c01796.png";
+const heroImage = "/manus-storage/adem-green-painting_9fb6d54d.png";
+const cleaningImage = "/manus-storage/adem-cleaning-detail_1522aca9.png";
+const plasterImage = "/manus-storage/adem-plaster-repair_514d3b5b.png";
 const texture = "/manus-storage/adem-aytekin-workshop-texture_9da4e52c.png";
 const detail = "/manus-storage/adem-aytekin-detail_9e34b63f.png";
-const mark = "/manus-storage/adem-aytekin-mark_b6c01796.png";
+const interiorImage = "/manus-storage/adem-interior-finish_40947385.png";
+const phone = "552 012 11 47";
 
 const services = [
-  { number: "01", title: "Boya & Badana", text: "Duvarları doğru hazırlık, temiz uygulama ve dengeli renklerle yeniliyoruz.", icon: Sparkles },
-  { number: "02", title: "Tamirat", text: "Ev ve iş yerindeki küçük büyük onarımları tek elde, düzenli biçimde çözüyoruz.", icon: Hammer },
-  { number: "03", title: "Alçı İşleri", text: "Çatlak, pürüz ve yüzey bozukluklarını düzgün ve boyaya hazır hale getiriyoruz.", icon: Ruler },
-  { number: "04", title: "Kırım İşleri", text: "Planlı, kontrollü ve mümkün olan en temiz şekilde söküm ve kırım yapıyoruz.", icon: Check },
+  { number: "01", title: "Boya & Badana", text: "Tek kat sürüp geçmeyiz. Yüzeyi hazırlayıp, gerekirse tekrar geçer; sizin beğeninizden önce kendi usta gözümüzle kontrol ederiz.", image: interiorImage, icon: Sparkles, label: "DÜZGÜN KAT / SON KONTROL" },
+  { number: "02", title: "Temiz İşçilik", text: "Önce temizler, sonra bantlarız. İş bitince bantları söker, kendi pisliğimizi yine kendimiz temizleriz.", image: cleaningImage, icon: Check, label: "BANTLAMA / TEMİZ TESLİM" },
+  { number: "03", title: "Alçı & Tamirat", text: "Çatlak, delik ve yüzey bozukluklarını sabırla düzeltir, boya öncesi yüzeyi gerçekten hazırlarız.", image: plasterImage, icon: Ruler, label: "YÜZEY HAZIRLIĞI / ÖZEN" },
+  { number: "04", title: "Dekorasyon & Kırım", text: "Kırım ve dekorasyon işlerini planlı, kontrollü ve mümkün olan en temiz şekilde tamamlarız.", image: detail, icon: Hammer, label: "PLANLI İŞ / USTA GÖZÜ" },
 ];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setMenuOpen(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [photoName, setPhotoName] = useState("");
+  const [videoName, setVideoName] = useState("");
+  const scrollTo = (id: string) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
+  const submitAppointment = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const body = [`Ad Soyad: ${data.get("name")}`, `Telefon: ${data.get("contact")}`, `İstenen tarih: ${data.get("date")}`, `İşin kısa açıklaması: ${data.get("details")}`, `Fotoğraf: ${photoName}`, `Video: ${videoName}`].join("\n");
+    window.location.href = `mailto:ademayt123@gmail.com?subject=Adem Aytekin Dekorasyon Randevu Talebi&body=${encodeURIComponent(body)}`;
+    setSubmitted(true);
   };
-
-  return (
-    <main className="site-shell">
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Adem Aytekin Dekorasyon ana sayfa">
-          <span className="brand-mark"><img src={mark} alt="Adem Aytekin Dekorasyon marka sembolü" /></span>
-          <span><strong>ADEM AYTEKİN</strong><small>DEKORASYON &amp; TAMİRAT</small></span>
-        </a>
-        <nav className={menuOpen ? "desktop-nav is-open" : "desktop-nav"} aria-label="Ana menü">
-          <button onClick={() => scrollTo("hizmetler")}>Hizmetler</button>
-          <button onClick={() => scrollTo("hakkimizda")}>Usta hakkında</button>
-          <button onClick={() => scrollTo("iletisim")}>İletişim</button>
-        </nav>
-        <a className="header-call" href="tel:+905555555555"><Phone size={16} /> <span>Hemen ara</span></a>
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Menüyü kapat" : "Menüyü aç"}>
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </header>
-
-      <section id="top" className="hero-section">
-        <div className="hero-copy reveal-up">
-          <p className="eyebrow"><span /> EVİNİZ İÇİN USTA EMEĞİ</p>
-          <h1>Duvarı yenilemekle kalmayız, <em>odayı yeniden kurarız.</em></h1>
-          <p className="hero-lede">Boya, tamirat ve dekorasyon işlerinde temiz işçilik, açık iletişim ve yılların saha deneyimi.</p>
-          <div className="hero-actions">
-            <button className="button button-primary" onClick={() => scrollTo("iletisim")}>İşinizi anlatın <ArrowUpRight size={18} /></button>
-            <button className="text-link" onClick={() => scrollTo("hizmetler")}>Hizmetleri incele <span>↘</span></button>
-          </div>
-          <div className="hero-proof"><span>●</span><p>İşin başından sonuna<br /><strong>tek usta, net çözüm.</strong></p></div>
-        </div>
-        <div className="hero-visual reveal-up delay-1">
-          <div className="hero-image-frame"><img src={texture} alt="Boyaya hazırlanan dokulu duvar yüzeyi ve usta işçiliği" /></div><div className="hero-portrait-inset"><img src={portrait} alt="Adem Aytekin, doğal bir portre" /><span>USTA / AA</span></div>
-          <div className="hero-stamp"><span>AA</span><small>Atölye<br />damgası</small></div>
-          <div className="measurement measurement-top">İŞÇİLİK / 01</div>
-          <div className="measurement measurement-bottom">DÜZ • TEMİZ • ZAMANINDA</div>
-        </div>
-      </section>
-
-      <section className="service-intro section-pad" id="hizmetler">
-        <div className="section-label">01 / HİZMETLER</div>
-        <div className="intro-grid"><h2>İşinizin ihtiyacı neyse, <span>oradan başlarız.</span></h2><p>Her mekânın ihtiyacı farklıdır. Önce dinler, sonra yüzeyi ve işi doğru planlarız. Böylece sürpriz değil, düzgün bir sonuç çıkar.</p></div>
-        <div className="service-list">{services.map(({ number, title, text, icon: Icon }) => <article className="service-row" key={number}><span className="service-number">{number}</span><div className="service-icon"><Icon size={22} strokeWidth={1.5} /></div><h3>{title}</h3><p>{text}</p><ArrowUpRight className="service-arrow" size={24} /></article>)}</div>
-      </section>
-
-      <section className="statement-section"><div className="statement-art"><img src={detail} alt="Alçı ve boya uygulamasında el işçiliği detayı" /><span className="field-mark">AA / 02</span></div><div className="statement-copy"><p className="eyebrow"><span /> SAHADAN NOT</p><h2>İyi iş, <em>detayda</em> belli olur.</h2><p>Koruma, hazırlık, doğru malzeme ve temizlik… İşin görünmeyen kısmını doğru yaptığımızda sonuç kendini gösterir.</p><button className="text-link light" onClick={() => scrollTo("iletisim")}>Ustanızla konuşun <span>↗</span></button></div></section>
-
-      <section className="about-section section-pad" id="hakkimizda"><div className="about-photo"><img src={detail} alt="Duvar yüzeyinde özenli alçı ve boya uygulaması" /><span className="photo-caption">YÜZEY HAZIRLIĞI / ÖNCE</span></div><div className="about-copy"><div className="section-label">02 / USTA HAKKINDA</div><h2>İşinizi <span>özenle</span> teslim ederiz.</h2><p>Adem Aytekin olarak ev, ofis ve dükkânlarda boya badana, alçı, tamirat, dekorasyon ve kırım işlerini bir bütün olarak ele alıyoruz.</p><div className="about-points"><div><strong>01</strong><span>Temiz çalışma</span></div><div><strong>02</strong><span>Net fiyatlandırma</span></div><div><strong>03</strong><span>Zamanında teslim</span></div></div></div></section>
-
-      <section className="contact-section" id="iletisim"><div className="contact-inner"><div className="contact-title"><img src={mark} alt="Adem Aytekin atölye damgası" /><p className="eyebrow"><span /> BİR İŞİNİZ Mİ VAR?</p><h2>İşi konuşalım,<br /><em>birlikte netleştirelim.</em></h2></div><div className="contact-actions"><a className="button button-light" href="tel:+905555555555"><Phone size={18} /> 0555 555 55 55</a><a className="whatsapp-link" href="https://wa.me/905555555555" target="_blank" rel="noreferrer">WhatsApp’tan yazın <ArrowUpRight size={17} /></a><small>Fotoğraf göndererek hızlıca bilgi alabilirsiniz.</small></div></div></section>
-
-      <footer className="site-footer"><div className="footer-brand"><span className="brand-mark small"><img src={mark} alt="" /></span><strong>ADEM AYTEKİN</strong></div><p>Boya • Tamirat • Dekorasyon • Alçı • Kırım</p><span>© 2026 Adem Aytekin</span></footer>
-      <a className="floating-call" href="tel:+905555555555" aria-label="Adem Aytekin'i ara"><Phone size={20} /></a>
-    </main>
-  );
+  return <main className="site-shell">
+    <header className="site-header"><a className="brand" href="#top" aria-label="Adem Aytekin Dekorasyon ana sayfa"><span className="brand-mark"><img src={mark} alt="Adem Aytekin Dekorasyon marka sembolü" /></span><span><strong>ADEM AYTEKİN</strong><small>18 YILDIR BOYA &amp; TAMİRAT</small></span></a><nav className={menuOpen ? "desktop-nav is-open" : "desktop-nav"} aria-label="Ana menü"><button onClick={() => scrollTo("hizmetler")}>Hizmetler</button><button onClick={() => scrollTo("usta")}>Usta hakkında</button><button onClick={() => scrollTo("randevu")}>Randevu al</button></nav><a className="header-call" href="tel:+905520121147"><Phone size={16} /><span>Hemen ara</span></a><button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menüyü aç/kapat">{menuOpen ? <X size={22} /> : <Menu size={22} />}</button></header>
+    <section id="top" className="hero-section"><div className="hero-copy reveal-up"><p className="eyebrow"><span /> ADEM AYTEKİN / 18 YILLIK USTA</p><h1>İşi müşteriden önce <em>usta gözüyle</em> beğeniriz.</h1><p className="hero-lede">Boya, tamirat ve dekorasyonda temiz işçilik. Önce temizler, sonra bantlar, işi kendi beğeneceğimiz seviyeye getiririz.</p><div className="hero-actions"><button className="button button-primary" onClick={() => scrollTo("randevu")}>Randevu al <CalendarDays size={18} /></button><a className="text-link" href="tel:+905520121147">{phone} <span>↗</span></a></div><div className="hero-proof"><span>●</span><p>İşin başından sonuna<br /><strong>kendi pisliğimizi kendimiz temizleriz.</strong></p></div></div><div className="hero-visual reveal-up delay-1"><div className="hero-image-frame"><img src={heroImage} alt="Adem Aytekin boya badana hizmetinde temiz ve düzgün uygulama" /></div><div className="hero-portrait-inset"><img src={portrait} alt="Adem Aytekin portresi" /><span>18 YIL / USTA</span></div><div className="hero-stamp"><span>AA</span><small>Temiz iş<br />yeşil imza</small></div><div className="measurement measurement-top">İŞÇİLİK / 01</div><div className="measurement measurement-bottom">DÜZ • TEMİZ • ZAMANINDA</div></div></section>
+    <section className="service-intro section-pad" id="hizmetler"><div className="section-label">01 / NE YAPIYORUZ?</div><div className="intro-grid"><h2>Bir iş bittiğinde, <span>arkasında iz bırakmayız.</span></h2><p>18 yıldır aynı prensiple çalışıyoruz: işi önce kendi usta gözümüzle kontrol etmek. Çünkü iyi iş, sadece duvarda değil; teslim ederken bıraktığınız temizlikte de belli olur.</p></div><div className="service-list">{services.map(({ number, title, text, image, icon: Icon, label }) => <article className="service-row" key={number}><div className="service-number">{number}</div><div className="service-image"><img src={image} alt={`${title} hizmeti Adem Aytekin`} /><span>{label}</span></div><div className="service-copy"><div className="service-heading"><div className="service-icon"><Icon size={20} strokeWidth={1.7} /></div><h3>{title}</h3></div><p>{text}</p></div><ArrowUpRight className="service-arrow" size={24} /></article>)}</div></section>
+    <section className="statement-section"><div className="statement-art"><img src={texture} alt="Boya sonrası bantları söken ve yüzeyi temizleyen usta" /><span className="field-mark">AA / 18 YIL</span></div><div className="statement-copy"><p className="eyebrow"><span /> BABAMIN İŞİNE BAKIŞI</p><h2>Temiz işçilik, <em>işin yarısıdır.</em></h2><p>Adem Aytekin için iş; tek kat boya sürüp çıkmak değil. Öncesi, uygulaması ve sonrası birlikte düşünülür.</p><button className="text-link light" onClick={() => scrollTo("randevu")}>İşinizi anlatın <span>↗</span></button></div></section>
+    <section className="about-section section-pad" id="usta"><div className="about-photo"><img src={portrait} alt="Adem Aytekin, 18 yıllık boyacı ve dekorasyon ustası" /><span className="photo-caption">ADEM AYTEKİN / 18 YILDIR SAHADA</span></div><div className="about-copy"><div className="section-label">02 / USTA HAKKINDA</div><h2>Babam, işi <span>kendi evine yapar gibi</span> yapar.</h2><p>18 yıldır boyacılık yapan Adem Aytekin, müşteriden önce kendi gözüne güvenmek ister. Duvarı, köşeyi, bandı ve temizliği tekrar tekrar kontrol eder; iş ancak içine sindiğinde teslim eder.</p><div className="about-points"><div><strong>01</strong><span>Önce temizler</span></div><div><strong>02</strong><span>Sonra bantlar</span></div><div><strong>03</strong><span>En son kendi kontrol eder</span></div></div></div></section>
+    <section className="appointment-section" id="randevu"><div className="appointment-heading"><p className="eyebrow"><span /> 03 / RANDEVU AL</p><h2>İşinizi anlatın,<br /><em>yerinde bakalım.</em></h2><p>Randevu talebi için aşağıdaki alanları doldurun. Evinizin bir fotoğrafını ve kısa bir videosunu ekleyin; böylece Adem usta gelmeden önce işi daha iyi anlayabilir.</p></div><form className="appointment-form" onSubmit={submitAppointment}><div className="form-row"><label>Adınız soyadınız<input name="name" required placeholder="Ad Soyad" /></label><label>Telefon numaranız<input name="contact" required type="tel" placeholder="05__ ___ __ __" /></label></div><div className="form-row"><label>Tercih ettiğiniz tarih<input name="date" required type="date" /></label><label>İş türü<select name="service" defaultValue="boya"><option value="boya">Boya & Badana</option><option value="tamirat">Tamirat</option><option value="alci">Alçı işleri</option><option value="dekorasyon">Dekorasyon / Kırım</option></select></label></div><label>İşi kısaca anlatın<textarea name="details" required placeholder="Hangi odada, ne yapılmasını istiyorsunuz?" rows={4} /></label><div className="upload-grid"><label className="upload-box"><span>01 / EVİN FOTOĞRAFI *</span><strong>{photoName || "Fotoğraf seçin"}</strong><input required type="file" accept="image/*" onChange={(e) => setPhotoName(e.target.files?.[0]?.name || "")} /></label><label className="upload-box"><span>02 / KISA VİDEO *</span><strong>{videoName || "Video seçin"}</strong><input required type="file" accept="video/*" onChange={(e) => setVideoName(e.target.files?.[0]?.name || "")} /></label></div><button className="button button-green" type="submit"><CalendarDays size={18} /> Randevu talebi oluştur</button>{submitted && <p className="form-note">E-posta uygulamanız açılmalıdır. Fotoğraf ve videoyu e-posta ekranına ayrıca ekleyerek gönderin.</p>}</form></section>
+    <footer className="site-footer"><div className="footer-brand"><span className="brand-mark small"><img src={mark} alt="" /></span><strong>ADEM AYTEKİN</strong></div><p>Boya • Tamirat • Dekorasyon • Alçı • Kırım</p><a href="tel:+905520121147">{phone}</a></footer><a className="floating-call" href="tel:+905520121147" aria-label="Adem Aytekin'i ara"><Phone size={20} /></a>
+  </main>;
 }
