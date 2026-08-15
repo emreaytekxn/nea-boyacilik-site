@@ -53,3 +53,9 @@
 ## SEO Notları
 
 Hedef ifadeler: boya badana, ev boyama, tamirat, dekorasyon, alçı işleri, kırım işleri, Adem Aytekin dekorasyon.
+
+## Vercel Yayını
+
+- [ ] Mevcut NEA Boyacılık dosyalarını Vercel deploy akışına hazırla.
+- [ ] Vercel build ve output ayarlarını yapılandır.
+- [ ] Vercel yayınını oluştur ve bağlantıyı doğrula.
