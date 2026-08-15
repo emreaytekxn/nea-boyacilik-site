@@ -1,4 +1,15 @@
-# Adem Aytekin Web Sitesi Görevleri
+# NEA Boyacılık Web Sitesi Görevleri
+
+## NEA Boyacılık Bağımsız Landing Page Revizyonu
+
+- [x] Adem Aytekin adına ait tüm isim, logo, fotoğraf, telefon, e-posta ve deneyim ifadelerini kaldır.
+- [x] Marka adını tüm sayfada NEA Boyacılık olarak güncelle.
+- [x] NEA Boyacılık için bağımsız ve profesyonel landing page metinleri oluştur.
+- [x] Eski kişisel randevu ve iletişim bilgilerini kaldır; yalnızca doğrulanmış NEA bilgilerini kullan.
+- [x] SEO title, meta description, Open Graph ve yapılandırılmış veriyi NEA Boyacılık’a göre yenile.
+- [x] Landing page’in responsive görünümünü ve temel etkileşimlerini doğrula.
+
+
 
 ## Logo ve Video Revizyonu
 
