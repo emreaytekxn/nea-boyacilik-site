@@ -1,5 +1,14 @@
 # Adem Aytekin Web Sitesi Görevleri
 
+## Logo ve Video Revizyonu
+
+- [x] Sol üstteki marka sembolünü yeşil AA logosuyla değiştir.
+- [x] Giriş bölümüne profesyonel yeşil temalı video ekle.
+- [x] Sayfa bölümlerine scroll reveal animasyonları ekle.
+- [x] prefers-reduced-motion desteğini koru ve mobil görünümü doğrula.
+
+
+
 ## Metin Revizyonu
 
 - [x] Tüm başlıkları ve açıklamaları profesyonel, kurumsal Türkçe ile yeniden yaz.
